@@ -45,7 +45,8 @@ class ESMFoldConfig:
 
 load_fn = esm.pretrained.load_model_and_alphabet
 esm_registry = {
-    "esm2_8M": partial(load_fn, "esm2_t6_8M_UR50D_500K"),
+    # "esm2_8M": partial(load_fn, "esm2_t6_8M_UR50D_500K"),
+    "esm2_8M": partial(load_fn, "esm2_t6_8M_UR50D"),
     "esm2_8M_270K": esm.pretrained.esm2_t6_8M_UR50D,
     "esm2_35M": partial(load_fn, "esm2_t12_35M_UR50D_500K"),
     "esm2_35M_270K": esm.pretrained.esm2_t12_35M_UR50D,
