@@ -745,7 +745,7 @@ class MultimodalDiffusionProteinLanguageModel(nn.Module):
         temperature=1.0,
         partial_masks=None,
         unmasking_strategy="stochastic1.0",  # [stochastic{temperature}, deterministic]
-        sampling_strategy="annealing@2.2:1.0",
+        sampling_strategy="annealing@2.0:0.1",
     ):
         self.eval()
         max_iter = max_iter

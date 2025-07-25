@@ -46,7 +46,8 @@ We develop DPLM based on the [ByProt](https://github.com/BytedProtein/ByProt). T
 
 ![DPLM-2](./assets/dplm-2.png)
 
-## News 📢
+## Updates 📢
+- ​**​[2025-07]​** We update the default sampling strategy of **DPLM-2** to `annealing@2.0:0.1`.
 - ​**​[2025-04]​**​ Our latest work **DPLM-2.1**, which focuses on analysis and better protein structure modeling of multimodal protein language models, is accepted to ICML'25 Spotlight! Check [Elucidating the Design Space of Multimodal Protein Language Models](https://arxiv.org/abs/2504.11454). We have release the implementation of finer-grained and better structure modeling (**DPLM-2 Bit**). The full implementation will be released soon.
 - ​**​[2024-10]​**​ Check out our new work [DPLM-2](https://arxiv.org/abs/2410.13782), a multimodal protein foundation model that extends DPLM to simultaneously model, understand, and generate both sequences and structures!
 - ​**​[2024-03]​**​ We release [DPLM](https://arxiv.org/abs/2402.18567), a versatile protein language model that demonstrates strong generative and predictive capabilities for protein sequences!
@@ -228,7 +229,7 @@ bash scripts/download_pdb_swissprot.sh
 
 <!-- omit in toc -->
 #### Example of training
-As noted in section 3.2 in [DPLM-2]() paper, we propose an efficient warm-up training strategy to mitigate the scarcity of structure training data. During training, we initialize the DPLM-2 model with pretrained DPLM checkpoint, to leverage the evolutionary knowledge captured by sequence-based pLM during large-scale sequence pretraining, which is beneficial for structure modeling.
+As noted in section 3.2 in [DPLM-2](https://arxiv.org/abs/2410.13782) paper, we propose an efficient warm-up training strategy to mitigate the scarcity of structure training data. During training, we initialize the DPLM-2 model with pretrained DPLM checkpoint, to leverage the evolutionary knowledge captured by sequence-based pLM during large-scale sequence pretraining, which is beneficial for structure modeling.
 
 We train DPLM-2 with approximately 64,000 tokens per batch for 100,000 training steps. To preserve the evolutionary knowledge captured by DPLM, we use the [LoRA](github.com/peft) to prevent large parameter shifts. The training command is as follows:
 
@@ -316,7 +317,12 @@ User can co-generate sequence and structure simultaneously with the command belo
 ```bash
 # choose from dplm2_150m, dplm2_650m, dplm2_3b
 model_name=dplm2_650m
-sampling_strategy=annealing@2.0:1.0
+# About the default sampling strategy, annealing@2.0:0.1,
+# which anneals the temperature from 2.0 to 0.1. 
+# It begins with high randomness to maximize diversity 
+# and concludes with low randomness to ensure designability.
+# This achieves a better trade-off between the quality and diversity.
+sampling_strategy=annealing@2.0:0.1
 
 output_dir=generation-results/${model_name}
 task=co_generation

@@ -235,11 +235,8 @@ def unconditional_generate(args):
                     sampling_strategy=args.sampling_strategy,
                 )
                 if args.task == "backbone_generation":
-                    _struct_tokens = outputs["output_tokens"].chunk(2, dim=1)[
-                        0
-                    ]
                     outputs["output_tokens"] = torch.cat(
-                        [_struct_tokens, _aatype_tokens], dim=1
+                        [outputs["output_tokens"], _aatype_tokens], dim=1
                     )
                 for k, v in outputs.items():
                     if k in all_outputs:
@@ -474,7 +471,7 @@ def main():
     parser.add_argument("--saveto", type=str, default="gen.fasta")
     parser.add_argument("--temperature", type=float, default=1.0)
     parser.add_argument(
-        "--sampling_strategy", type=str, default="annealing@2.2:0.1"
+        "--sampling_strategy", type=str, default="annealing@2.0:0.1"
     )
     parser.add_argument(
         "--unmasking_strategy", type=str, default="stochastic1.0"
