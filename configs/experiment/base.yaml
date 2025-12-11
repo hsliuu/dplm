@@ -3,11 +3,42 @@
 # to execute this experiment run:
 # python train.py experiment=example
 
-defaults:
-  - /datamodule: cath_4.2
+#defaults:
+#  - /datamodule: tokenized_protein
 
 # all parameters below will be merged with parameters from default configurations set above
 # this allows you to overwrite only specified parameters
 
 # name of the run determines folder name in logs
-name: "fixedbb/protein_mpnn-cath_esm"
+# Toy training experiment config for DPLM
+# 简化版，不依赖 CATH，不依赖 OpenFold，自带 toy 数据即可运行
+
+# Toy training experiment config for DPLM
+# 不依赖 trainer group，不依赖 openfold，不依赖 CATH
+
+defaults:
+  - datamodule: tokenized_protein
+  - model: base
+  - _self_
+
+# datamodule 覆盖（toy 数据）
+datamodule:
+  path: data/toy
+
+# 输出目录
+output_dir: exp/toy_run
+
+# 训练参数（直接在这里写，不走 trainer config group）
+trainer:
+  max_epochs: 1
+  accelerator: gpu
+  devices: 1
+  log_every_n_steps: 1
+  enable_checkpointing: false
+
+# 模型参数（保持默认即可）
+model:
+  vocab_size: 30
+  hidden_dim: 128
+  num_layers: 4
+  dropout: 0.1

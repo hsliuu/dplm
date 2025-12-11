@@ -14,30 +14,30 @@ from pytorch_lightning.plugins.training_type import DeepSpeedPlugin, DDPPlugin
 from pytorch_lightning.plugins.environments import SLURMEnvironment
 import torch
 
-from openfold.config import model_config
-from openfold.data.data_modules import (
+from old_openfold.config import model_config
+from old_openfold.data.data_modules import (
     OpenFoldDataModule,
     DummyDataLoader,
 )
-from openfold.model.model import AlphaFold
-from openfold.model.torchscript import script_preset_
-from openfold.np import residue_constants
-from openfold.utils.argparse import remove_arguments
-from openfold.utils.callbacks import (
+from old_openfold.model.model import AlphaFold
+from old_openfold.model.torchscript import script_preset_
+from old_openfold.np import residue_constants
+from old_openfold.utils.argparse import remove_arguments
+from old_openfold.utils.callbacks import (
     EarlyStoppingVerbose,
 )
-from openfold.utils.exponential_moving_average import ExponentialMovingAverage
-from openfold.utils.loss import AlphaFoldLoss, lddt_ca
-from openfold.utils.lr_schedulers import AlphaFoldLRScheduler
-from openfold.utils.seed import seed_everything
-from openfold.utils.superimposition import superimpose
-from openfold.utils.tensor_utils import tensor_tree_map
-from openfold.utils.validation_metrics import (
+from old_openfold.utils.exponential_moving_average import ExponentialMovingAverage
+from old_openfold.utils.loss import AlphaFoldLoss, lddt_ca
+from old_openfold.utils.lr_schedulers import AlphaFoldLRScheduler
+from old_openfold.utils.seed import seed_everything
+from old_openfold.utils.superimposition import superimpose
+from old_openfold.utils.tensor_utils import tensor_tree_map
+from old_openfold.utils.validation_metrics import (
     drmsd,
     gdt_ts,
     gdt_ha,
 )
-from openfold.utils.import_weights import (
+from old_openfold.utils.import_weights import (
     import_jax_weights_,
 )
 from scripts.zero_to_fp32 import (
@@ -45,7 +45,7 @@ from scripts.zero_to_fp32 import (
     get_global_step_from_zero_checkpoint
 )
 
-from openfold.utils.logger import PerformanceLoggingCallback
+from old_openfold.utils.logger import PerformanceLoggingCallback
 
 
 class OpenFoldWrapper(pl.LightningModule):

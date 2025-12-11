@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 import subprocess
 
-from openfold.data.tools import hhsearch
+from old_openfold.data.tools import hhsearch
 
 
 def _split_a3ms(output_dir):

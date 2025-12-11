@@ -18,7 +18,7 @@ import math
 import numpy as np
 import os
 
-from openfold.utils.script_utils import load_models_from_command_line, parse_fasta, run_model, prep_output, \
+from old_openfold.utils.script_utils import load_models_from_command_line, parse_fasta, run_model, prep_output, \
     update_timings, relax_protein
 
 logging.basicConfig()
@@ -43,15 +43,15 @@ if(
 
 torch.set_grad_enabled(False)
 
-from openfold.config import model_config
-from openfold.data import templates, feature_pipeline, data_pipeline
-from openfold.np import residue_constants, protein
-import openfold.np.relax.relax as relax
+from old_openfold.config import model_config
+from old_openfold.data import templates, feature_pipeline, data_pipeline
+from old_openfold.np import residue_constants, protein
+import old_openfold.np.relax.relax as relax
 
-from openfold.utils.tensor_utils import (
+from old_openfold.utils.tensor_utils import (
     tensor_tree_map,
 )
-from openfold.utils.trace_utils import (
+from old_openfold.utils.trace_utils import (
     pad_feature_dict_seq,
     trace_model_,
 )

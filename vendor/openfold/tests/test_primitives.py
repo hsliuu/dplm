@@ -16,7 +16,7 @@ import torch
 import numpy as np
 import unittest
 
-from openfold.model.primitives import (
+from old_openfold.model.primitives import (
     Attention,
 )
 from tests.config import consts

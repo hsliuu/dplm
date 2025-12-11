@@ -15,8 +15,8 @@
 import torch
 import numpy as np
 import unittest
-from openfold.model.pair_transition import PairTransition
-from openfold.utils.tensor_utils import tree_map
+from old_openfold.model.pair_transition import PairTransition
+from old_openfold.utils.tensor_utils import tree_map
 import tests.compare_utils as compare_utils
 from tests.config import consts
 

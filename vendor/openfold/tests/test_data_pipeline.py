@@ -19,9 +19,9 @@ import torch
 import numpy as np
 import unittest
 
-from openfold.data.data_pipeline import DataPipeline
-from openfold.data.templates import TemplateHitFeaturizer
-from openfold.model.embedders import (
+from old_openfold.data.data_pipeline import DataPipeline
+from old_openfold.data.templates import TemplateHitFeaturizer
+from old_openfold.model.embedders import (
     InputEmbedder,
     RecyclingEmbedder,
     TemplateAngleEmbedder,

@@ -2,8 +2,8 @@ import argparse
 import logging
 import os
 
-from openfold.data import mmcif_parsing
-from openfold.np import protein, residue_constants
+from old_openfold.data import mmcif_parsing
+from old_openfold.np import protein, residue_constants
 
 
 def main(args):

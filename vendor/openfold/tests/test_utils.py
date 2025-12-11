@@ -17,13 +17,13 @@ import numpy as np
 import torch
 import unittest
 
-from openfold.utils.rigid_utils import (
+from old_openfold.utils.rigid_utils import (
     Rotation,
     Rigid, 
     quat_to_rot,
     rot_to_quat,
 )
-from openfold.utils.chunk_utils import chunk_layer, _chunk_slice
+from old_openfold.utils.chunk_utils import chunk_layer, _chunk_slice
 import tests.compare_utils as compare_utils
 from tests.config import consts
 

@@ -19,13 +19,13 @@ import numpy as np
 import unittest
 import ml_collections as mlc
 
-from openfold.data import data_transforms
-from openfold.utils.rigid_utils import (
+from old_openfold.data import data_transforms
+from old_openfold.utils.rigid_utils import (
     Rotation,
     Rigid,
 )
-import openfold.utils.feats as feats
-from openfold.utils.loss import (
+import old_openfold.utils.feats as feats
+from old_openfold.utils.loss import (
     torsion_angle_loss,
     compute_fape,
     between_residue_bond_loss,
@@ -44,7 +44,7 @@ from openfold.utils.loss import (
     tm_loss,
     compute_plddt,
 )
-from openfold.utils.tensor_utils import (
+from old_openfold.utils.tensor_utils import (
     tree_map,
     tensor_tree_map,
     dict_multimap,

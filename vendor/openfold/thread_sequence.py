@@ -5,13 +5,13 @@ import random
 
 import numpy
 import torch
-from openfold.config import model_config
-from openfold.data import feature_pipeline
-from openfold.data.data_pipeline import make_sequence_features_with_custom_template
-from openfold.np import protein
-from openfold.utils.script_utils import load_models_from_command_line, parse_fasta, run_model, prep_output, \
+from old_openfold.config import model_config
+from old_openfold.data import feature_pipeline
+from old_openfold.data.data_pipeline import make_sequence_features_with_custom_template
+from old_openfold.np import protein
+from old_openfold.utils.script_utils import load_models_from_command_line, parse_fasta, run_model, prep_output, \
     relax_protein
-from openfold.utils.tensor_utils import (
+from old_openfold.utils.tensor_utils import (
     tensor_tree_map,
 )
 from scripts.utils import add_data_args

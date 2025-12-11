@@ -16,23 +16,23 @@ import torch
 import numpy as np
 import unittest
 
-from openfold.data.data_transforms import make_atom14_masks_np
-from openfold.np.residue_constants import (
+from old_openfold.data.data_transforms import make_atom14_masks_np
+from old_openfold.np.residue_constants import (
     restype_rigid_group_default_frame,
     restype_atom14_to_rigid_group,
     restype_atom14_mask,
     restype_atom14_rigid_group_positions,
     restype_atom37_mask,
 )
-from openfold.model.structure_module import (
+from old_openfold.model.structure_module import (
     StructureModule,
     StructureModuleTransition,
     BackboneUpdate,
     AngleResnet,
     InvariantPointAttention,
 )
-import openfold.utils.feats as feats
-from openfold.utils.rigid_utils import Rotation, Rigid
+import old_openfold.utils.feats as feats
+from old_openfold.utils.rigid_utils import Rotation, Rigid
 import tests.compare_utils as compare_utils
 from tests.config import consts
 from tests.data_utils import (

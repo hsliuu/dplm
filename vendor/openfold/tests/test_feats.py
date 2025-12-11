@@ -16,16 +16,16 @@ import torch
 import numpy as np
 import unittest
 
-import openfold.data.data_transforms as data_transforms
-from openfold.np.residue_constants import (
+import old_openfold.data.data_transforms as data_transforms
+from old_openfold.np.residue_constants import (
     restype_rigid_group_default_frame,
     restype_atom14_to_rigid_group,
     restype_atom14_mask,
     restype_atom14_rigid_group_positions,
 )
-import openfold.utils.feats as feats
-from openfold.utils.rigid_utils import Rotation, Rigid
-from openfold.utils.tensor_utils import (
+import old_openfold.utils.feats as feats
+from old_openfold.utils.rigid_utils import Rotation, Rigid
+from old_openfold.utils.tensor_utils import (
     tree_map,
     tensor_tree_map,
 )

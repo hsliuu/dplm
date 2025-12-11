@@ -17,11 +17,11 @@ import torch
 import torch.nn as nn
 import numpy as np
 import unittest
-from openfold.config import model_config
-from openfold.data import data_transforms
-from openfold.model.model import AlphaFold
-import openfold.utils.feats as feats
-from openfold.utils.tensor_utils import tree_map, tensor_tree_map
+from old_openfold.config import model_config
+from old_openfold.data import data_transforms
+from old_openfold.model.model import AlphaFold
+import old_openfold.utils.feats as feats
+from old_openfold.utils.tensor_utils import tree_map, tensor_tree_map
 import tests.compare_utils as compare_utils
 from tests.config import consts
 from tests.data_utils import (

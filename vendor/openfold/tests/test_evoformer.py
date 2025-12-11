@@ -15,12 +15,12 @@
 import torch
 import numpy as np
 import unittest
-from openfold.model.evoformer import (
+from old_openfold.model.evoformer import (
     MSATransition,
     EvoformerStack,
     ExtraMSAStack,
 )
-from openfold.utils.tensor_utils import tree_map
+from old_openfold.utils.tensor_utils import tree_map
 import tests.compare_utils as compare_utils
 from tests.config import consts
 

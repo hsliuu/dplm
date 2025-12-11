@@ -10,7 +10,7 @@ sys.path.append(".") # an innocent hack to get this to run from the top level
 
 from tqdm import tqdm
 
-from openfold.data.mmcif_parsing import parse 
+from old_openfold.data.mmcif_parsing import parse 
 
 
 def parse_file(f, args):

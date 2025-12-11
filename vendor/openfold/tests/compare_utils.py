@@ -7,9 +7,9 @@ import unittest
 
 import numpy as np
 
-from openfold.config import model_config
-from openfold.model.model import AlphaFold
-from openfold.utils.import_weights import import_jax_weights_
+from old_openfold.config import model_config
+from old_openfold.model.model import AlphaFold
+from old_openfold.utils.import_weights import import_jax_weights_
 from tests.config import consts
 
 # Give JAX some GPU memory discipline
