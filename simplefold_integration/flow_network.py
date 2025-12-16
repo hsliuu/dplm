@@ -16,12 +16,12 @@ class SimpleFoldFlowNetwork(torch.nn.Module):
         Returns:
             v_t: 预测的速度场向量 (B, L, 3)
         """
-        # 1. 拼接/融合条件输入
+        # 拼接/融合条件输入
         fused_cond = torch.cat([lm_hidden, fine_cond], dim=-1)
         
-        # 2. 将 X_t 和 fused_cond 传入 SimpleFold 核心 GNN/Transformer
+        # 将 X_t 和 fused_cond 传入 SimpleFold 核心 GNN/Transformer
         # ... (SimpleFold 复杂的结构特征处理逻辑)
         
-        # 3. 输出速度场
+        # 输出速度场
         v_t = self.velocity_predictor(processed_features)
         return v_t

@@ -2,41 +2,40 @@ def training_step(model, batch):
     # 从 DataLoader 获取所有数据
     (seq_ids, target_seq, struct_X, target_bit, target_fine_cond, X_t, v_target, t) = batch
     
-    # 1. LM 和 Bit Head 前向传播
+    #LM 和 Bit Head 前向传播
     seq_logits, bit_logits, lm_hidden = model(
         input_seq_ids=seq_ids, 
         input_struct_X=X_t, # 输入是带噪声的结构
         target_t=t 
     )
     
-    # --- A. 序列损失 ---
+    #序列损失
     seq_loss = F.cross_entropy(seq_logits.view(-1, V), target_seq.view(-1))
     
-    # --- B. Bit 损失 ---
-    bit_loss = F.cross_entropy(bit_logits.view(-1, 2), target_bit.view(-1))
+    #Bit损失，不可用
+    #bit_loss = F.cross_entropy(bit_logits.view(-1, 2), target_bit.view(-1))
     
-    # --- C. 流匹配损失 ---
-    # 2. Flow Network 前向传播
+    #流匹配损失
+    #Flow Network前向传播
     v_pred = model.flow_network(
         X_t=X_t, 
-        lm_hidden=lm_hidden.detach(), # 关键：不让FM损失的梯度流回LM，除非使用交叉损失
+        lm_hidden=lm_hidden.detach(), #不让流匹配损失的梯度流回LM
         fine_cond=target_fine_cond,
         sequence_mask=None
     )
     
     flow_matching_loss = compute_flow_matching_loss(v_pred, v_target)
     
-    # --- D. 联合优化 ---
-    lambda_bit = 1.0 # 超参数
-    lambda_fm = 100.0 # 超参数
+    #超参数联合优化
+    lambda_bit = 1.0
+    lambda_fm = 100.0
     
     total_loss = seq_loss + (lambda_bit * bit_loss) + (lambda_fm * flow_matching_loss)
     
-    # 反向传播和优化器更新
-    # ...
+    #反向传播和优化器更新
     return total_loss
 
-"""  # dplm/training/trainer.py (简化伪代码)
+"""  # dplm/training/trainer.py
 
 def training_step(model, batch, epoch, total_epochs):
     # 假设 batch 包含所有所需数据: real_seq, real_coords, t, target_velocity, target_bit 等
@@ -79,7 +78,7 @@ def training_step(model, batch, epoch, total_epochs):
     if epoch / total_epochs > 0.9:
         # 在 Flow Network 上计算一个简单的 MSE (结构微调 SFT)
         # 假设 Flow Network 能够预测一个去噪后的结构 X_0，或者这里需要一个单独的结构预测头
-        # **注意：您这里用 flow_network(...) 计算 MSE 的方式，需要 Flow Network 有一个结构输出头。**
+        # 这里用 flow_network(...) 计算 MSE 的方式，需要 Flow Network 有一个结构输出头
         
         # 简化处理：假设 Flow Network 可以通过积分得到 X_0 预测
         # 或者使用一个额外的结构预测头 model.struct_head()

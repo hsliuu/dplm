@@ -9,7 +9,7 @@ def compute_flow_matching_loss(v_pred, v_target):
     """
     return torch.mean(torch.square(v_pred - v_target))
 
-# 复制 SimpleFold 的 ODE Integrator (用于推理)
+# SimpleFold的ODE Integrator (用于推理)
 class ODEIntegrator:
     def __init__(self, step_size, flow_network):
         self.dt = step_size
@@ -21,5 +21,5 @@ class ODEIntegrator:
         """
         # 假设 t 也是条件的一部分
         v_t = self.flow_network(X_t, **conditions)
-        X_t_next = X_t - v_t * self.dt # 注意：流匹配通常是 t=1 到 t=0，这里是反向积分
+        X_t_next = X_t - v_t * self.dt # 流匹配通常是t=1到t=0，这里是反向积分
         return X_t_next
